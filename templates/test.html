@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <!-- Pass parameter to title -->
+        <title>{{ siteTitle }}</title>
+
+        <!-- Link to the Site Style Sheet -->
+        <link rel="stylesheet" href="/static/css/main.css"/>
+
+    </head>
+    <body>
+
+        <div>
+            <!-- Pass parameter to body -->
+            <h1>{{ bodyContent }}</h1>
+        </div>
+        
+        <div>
+            <!-- button to display Ajax usage -->
+            <button id="click">Click me for Ajax</button>
+        </div>
+
+        <!-- Jquery Script from Google CDN (https://developers.google.com/speed/libraries#jquery)-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <script>
+            //Subscribe to Click event of the Button -->
+            $('#click').click(function () {
+
+                // Ajax can be used to:
+                //       Manipulate DOM, get/post data to server, etc
+                $.ajax({
+                    type: "GET",    // Method type
+                    url: '/data',   // Route
+                    success: function (response) {  // What to do on success
+                        // Display an alert msg of the response from Server
+                        //alert(response); 
+
+                        // find the H1 tag on page and replace its text with response
+                        //$('h1').text(response) 
+
+                        // Get the response as Json and display alert as string
+                        alert(JSON.stringify(response));
+                        // JSON.parse(response) --  to create Json object from string
+                    }
+                });
+            });
+        </script>
+
+    </body>
+</html>
